@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     def ask_interests
         prompt = TTY::Prompt.new
         choices = ["Art", "Food", "Bars", "Music", "Baseball"]
-        var = prompt.select("what are your interests", choices)
+        var = prompt.select("What are your interests?".colorize(:light_blue), choices)
         new_ui = Interest.all.find{|int| int.name == var}
         
         UserInterest.create(user_id: self.id, interest_id: new_ui.id)
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     def ask_interests_again
         prompt = TTY::Prompt.new
         choices = ["Art", "Food", "Bars", "Music", "Baseball"]
-        var = prompt.select("what else do you like?", choices)
+        var = prompt.select("What else do you like?".colorize(:light_blue), choices)
         new_ui = Interest.all.find{|int| int.name == var}
         
         UserInterest.create(user_id: self.id, interest_id: new_ui.id)
@@ -31,15 +31,18 @@ class User < ActiveRecord::Base
          if delete_or_not == "Yes"
             kill_these = get_my_ui
             kill_these.map {|ui| ui.delete}
-            puts "You dead"
+            puts "You B-O-R-I-N-G!".colorize(:red)
             # binding.pry
-         else puts "try again"  
+         else delete_or_not == "Nah"
+            get_my_ui
+            puts "You F-U-N!".colorize(:blue)
+            end
     
         #     my_interests = self.user_interests.id
         #     delete()
         #  else answer == "View my Interests"
             # need to display list of this users' interests
-         end   
+            
         # deletion_choices = self.interests.map {|interest| interest.name}
         # deletion = prompt.select("Would you like to be less interested in anything?", deletion_choices)
 

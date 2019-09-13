@@ -1,13 +1,26 @@
 class CommandLine
     def greet
-        puts "What do you fancy?"
-        puts "The boring way to tell us about your interests"
+        # puts "What do you fancy?".colorize(:light_blue)
+        def header
+        doc = <<-'TIME' 
+         _  _  _ _                       _                                ___                      ____  
+        | || || | |          _          | |                              / __)                    (___ \ 
+        | || || | | _   ____| |_      _ | | ___     _   _  ___  _   _   | |__ ____ ____   ____ _   _  ) )
+        | ||_|| | || \ / _  |  _)    / || |/ _ \   | | | |/ _ \| | | |  |  __) _  |  _ \ / ___) | | |/_/ 
+        | |___| | | | ( ( | | |__   ( (_| | |_| |  | |_| | |_| | |_| |  | | ( ( | | | | ( (___| |_| |_   
+         \______|_| |_|\_||_|\___)   \____|\___/    \__  |\___/ \____|  |_|  \_||_|_| |_|\____)\__  (_)  
+                                                   (____/                                     (____/     
+        
+        TIME
+        end
+        puts header
+        puts "The boring way to tell us about your interests".colorize(:light_blue)
     end
      
 
     def gets_user_input
-        puts "What is your name?"
-        print "input: "
+        puts "What is your name?".colorize(:blue)
+        print "input: ".colorize(:blue)
         input = gets.chomp
         input
     end
